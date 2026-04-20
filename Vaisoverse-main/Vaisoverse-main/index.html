@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaisoverse Innovation | Innovating Artificial Intelligent Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="icon" href="VAISOVERSE INNOVATION LOGO.png" type="image/png">
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-purple: #8E2AAE;
+      --dark-purple: #5E1B74;
+      --accent-violet: #B85AD9;
+      --bg-dark: #0B0B0F;
+      --surface-dark: #14141C;
+      --text-primary: #FFFFFF;
+      --text-secondary: #CFC7D6;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .font-heading {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Glassmorphism Classes */
+    .glass-header {
+      background: rgba(11, 11, 15, 0.7);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .glass-card {
+      background: rgba(20, 20, 28, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-card:hover {
+      background: rgba(30, 30, 40, 0.8);
+      border-color: var(--accent-violet);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(142, 42, 174, 0.4);
+    }
+
+    /* Hero Animation (Video-like Mesh Gradient) */
+    .hero-mesh {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(at 0% 0%, hsla(285, 60%, 20%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 0%, hsla(260, 50%, 15%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(285, 60%, 20%, 1) 0, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(260, 50%, 15%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 50%, hsla(285, 60%, 10%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 50%, hsla(260, 50%, 15%, 1) 0, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(285, 60%, 20%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 100%, hsla(260, 50%, 15%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 100%, hsla(285, 60%, 20%, 1) 0, transparent 50%);
+      background-color: #0B0B0F;
+      filter: blur(80px);
+      animation: mesh-flow 20s ease infinite alternate;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    @keyframes mesh-flow {
+      0% {
+        transform: scale(1) translate(0, 0);
+      }
+
+      50% {
+        transform: scale(1.1) translate(-2%, -2%);
+      }
+
+      100% {
+        transform: scale(1) translate(2%, 2%);
+      }
+    }
+
+    /* Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hover Underscore Animation */
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-violet);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Button Ripple Effect */
+    .btn-ripple {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .btn-ripple:hover {
+      box-shadow: 0 0 20px rgba(184, 90, 217, 0.4);
+      transform: scale(1.02);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--dark-purple);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-purple);
+    }
+
+    /* Modal Styles */
+    #modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    #modal-overlay.active {
+      display: flex;
+    }
+
+    /* Floating Buttons */
+    .floating-btns {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .float-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1) translateY(-5px);
+    }
+
+    #back-to-top {
+      background: var(--surface-dark);
+      color: white;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    #back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+    }
+
+    /* Map Dark Mode Filter */
+    .dark-map {
+      filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(100%);
+    }
+  </style>
+</head>
+
+<body class="selection:bg-purple-500/30 selection:text-white">
+
+  <!-- FLOATING BUTTONS -->
+  <div class="floating-btns">
+    <button id="back-to-top" class="float-btn" onclick="scrollToTop()" title="Back to Top">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18">
+        </path>
+      </svg>
+    </button>
+    <a href="https://wa.me/919566985698" target="_blank" class="float-btn whatsapp-btn" title="Chat on WhatsApp">
+      <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.631 1.432h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- MODAL (Success Simulation) -->
+  <div id="modal-overlay" class="items-center justify-center p-6">
+    <div class="glass-card max-w-md w-full p-10 rounded-[2.5rem] text-center">
+      <div
+        class="w-20 h-20 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      <h3 class="text-3xl font-black mb-4">Transmission Successful</h3>
+      <p class="text-white/60 mb-8">Your data has been securely uploaded to our intelligence grid. Our architects
+        will contact you shortly.</p>
+      <button onclick="closeModal()"
+        class="px-10 py-3 bg-white text-black font-black rounded-xl hover:bg-emerald-500 hover:text-white transition-all">Close
+        Instance</button>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header id="main-header" class="fixed top-0 left-0 w-full z-50 glass-header py-4 transition-all duration-500">
+    <nav class="container mx-auto px-4 md:px-6 flex items-center justify-between">
+      <a href="#home" class="flex items-center space-x-3 group">
+        <img src="VAISOVERSE INNOVATION LOGO.png" alt="VAISO VERSE Logo" class="h-10 w-auto">
+        <div class="flex flex-col">
+          <span
+            class="text-xl font-extrabold tracking-tight text-white group-hover:text-[var(--accent-violet)] transition-colors">Vaisoverse
+            Innovation </span>
+          <span class="text-[10px] uppercase tracking-[0.2em] font-medium text-white/50 leading-none">Innovating
+            Artificial Intelligent Solutions</span>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex items-center space-x-8">
+        <a href="#home" class="text-sm font-semibold text-white/80 hover:text-white nav-link transition-colors">Home</a>
+        <a href="#about"
+          class="text-sm font-semibold text-white/80 hover:text-white nav-link transition-colors">About</a>
+        <a href="#products"
+          class="text-sm font-semibold text-white/80 hover:text-white nav-link transition-colors">Products</a>
+        <a href="#innovation"
+          class="text-sm font-semibold text-white/80 hover:text-white nav-link transition-colors">Innovation</a>
+        <a href="#tech" class="text-sm font-semibold text-white/80 hover:text-white nav-link transition-colors">Tech
+          Stack</a>
+        <a href="#careers"
+          class="text-sm font-semibold text-white/80 hover:text-white nav-link transition-colors">Careers</a>
+        <a href="#faq" class="text-sm font-semibold text-white/80 hover:text-white nav-link transition-colors">FAQ</a>
+        <a href="team.html" class="text-sm font-semibold text-white/80 hover:text-white nav-link transition-colors">Team</a>
+        <a href="#contact"
+          class="px-6 py-2.5 bg-gradient-to-r from-[var(--primary-purple)] to-[var(--accent-violet)] rounded-full text-sm font-bold btn-ripple">Connect
+          Now</a>
+        
+        <!-- NEW ADMIN BUTTON FOR DESKTOP -->
+        <a href="https://hrsite-manager-uxe5.vercel.app/" target="_blank"
+          class="px-6 py-2.5 border border-purple-500/50 bg-purple-500/10 text-purple-300 rounded-full text-sm font-bold hover:bg-purple-500 hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(142,42,174,0.15)] hover:shadow-[0_0_25px_rgba(142,42,174,0.5)] flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          Admin
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="menu-toggle" class="lg:hidden flex flex-col space-y-1.5 focus:outline-none z-50">
+        <span class="w-6 h-0.5 bg-white transition-all"></span>
+        <span class="w-6 h-0.5 bg-white transition-all"></span>
+        <span class="w-6 h-0.5 bg-white transition-all"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu"
+    class="fixed inset-0 bg-[var(--bg-dark)] z-40 hidden flex-col items-center justify-start pt-24 pb-12 space-y-6 lg:hidden transition-all duration-500 overflow-y-auto">
+    <a href="#home" class="text-2xl font-bold mobile-link">Home</a>
+    <a href="#about" class="text-2xl font-bold mobile-link">About</a>
+    <a href="#products" class="text-2xl font-bold mobile-link">Products</a>
+    <a href="#innovation" class="text-2xl font-bold mobile-link">Innovation</a>
+    <a href="#tech" class="text-2xl font-bold mobile-link">Tech Stack</a>
+    <a href="#careers" class="text-2xl font-bold mobile-link">Careers</a>
+    <a href="#faq" class="text-2xl font-bold mobile-link">FAQ</a>
+    <a href="team.html" class="text-2xl font-bold mobile-link">Team</a>
+    <a href="#contact" class="text-2xl font-bold mobile-link text-[var(--accent-violet)]">Contact</a>
+    
+    <!-- NEW ADMIN BUTTON FOR MOBILE -->
+    <a href="https://hrsite-manager-uxe5.vercel.app/" target="_blank" 
+       class="mt-6 px-8 py-3 border border-purple-500/50 bg-purple-500/10 text-purple-300 rounded-full text-xl font-bold hover:bg-purple-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(142,42,174,0.15)]">
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+       Admin Portal
+    </a>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="min-h-screen relative flex items-center justify-center overflow-hidden pt-20"
+    data-aos="fade-up">
+    <div class="hero-mesh"></div>
+    <div class="absolute inset-0 z-0 bg-black/40"></div>
+
+    <div class="container mx-auto px-4 md:px-6 relative z-10 text-center"><br>
+      
+      <div class="inline-block px-4 py-1.5 mb-6 glass-card rounded-full ring-1 ring-white/10">
+        <span class="text-xs font-bold tracking-[0.3em] uppercase text-purple-400">Enterprise Intelligent
+          Systems</span>
+      </div>
+
+      <h1 class="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 leading-[1.2] md:leading-[1.1]">
+        Engineering the <span
+          class="bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary-purple)] to-[var(--accent-violet)]">Future</span><br>
+        of Artificial Intelligent Technology
+      </h1>
+
+      <p class="text-lg md:text-xl text-[var(--text-secondary)] max-w-3xl mx-auto mb-12 leading-relaxed font-medium">
+        Empowering the next generation of global enterprises through custom-built software architectures and
+        cognitive computing solutions.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+        <a href="#products"
+          class="w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-[var(--primary-purple)] to-[var(--dark-purple)] rounded-xl text-lg font-extrabold btn-ripple shadow-lg shadow-purple-500/20">
+          Explore Solutions
+        </a>
+        <a href="#careers"
+          class="w-full sm:w-auto px-10 py-4 glass-card rounded-xl text-lg font-extrabold hover:bg-white/5 transition-colors">
+          Join Our Journey
+        </a>
+      </div>
+    </div>
+
+    <canvas id="hero-canvas" class="absolute inset-0 pointer-events-none opacity-40"></canvas>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="py-20 md:py-32 relative overflow-hidden bg-[var(--bg-dark)]" data-aos="fade-up"
+    data-aos-delay="200">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+        <div class="reveal">
+          <h2 class="text-[var(--accent-violet)] font-bold uppercase tracking-[0.25em] text-xs mb-4">The core
+            identity</h2>
+          <h3 class="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-tight">About Vaisoverse.</h3>
+          <p class="text-[var(--text-secondary)] text-xl mb-10 leading-relaxed font-medium text-justify">
+            Vaisoverse Innovation is a forward-thinking technology consultancy and engineering studio
+            committed to helping organizations innovate faster, operate smarter, and scale securely. By
+            combining startup agility with modern tools, we deliver high-impact software, cloud, and
+            security solutions that empower businesses worldwide.
+          </p>
+        </div>
+        <div class="relative reveal delay-300">
+          <div class="aspect-square glass-card rounded-[3rem] overflow-hidden p-3 relative ring-1 ring-white/10">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop"
+              alt="Team Discussion"
+              class="w-full h-full object-cover rounded-[2.5rem] opacity-80 group-hover:scale-105 transition-transform duration-1000">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-[var(--bg-dark)] via-transparent to-transparent opacity-60">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS SECTION -->
+  <section id="products" class="py-20 md:py-32 bg-[var(--surface-dark)]" data-aos="fade-up">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center mb-16 md:mb-24 reveal">
+        <h2 class="text-4xl md:text-5xl font-black mb-4">Our Premium Products</h2>
+        <p class="text-[var(--text-secondary)]">Industrial-grade ecosystems for specialized operations.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Retail App -->
+        <div class="glass-card group p-10 rounded-[2rem] reveal reveal-stagger relative overflow-hidden">
+          <div
+            class="absolute -right-4 -top-4 w-24 h-24 bg-purple-500/5 rounded-full group-hover:bg-purple-500/20 transition-all duration-700">
+          </div>
+          <div
+            class="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-8 border border-purple-500/20 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+            </svg>
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Smart Retail App</h4>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">Omni-channel retail management
+            with real-time inventory and predictive analytics.</p>
+          <a href="Retail Management.pdf" target="_blank"
+            class="text-xs font-bold uppercase tracking-widest text-purple-400 flex items-center group-hover:text-white transition-colors">
+            Discover More <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Staff Management -->
+        <div class="glass-card group p-10 rounded-[2rem] reveal reveal-stagger relative overflow-hidden">
+          <div
+            class="absolute -right-4 -top-4 w-24 h-24 bg-violet-500/5 rounded-full group-hover:bg-violet-500/20 transition-all duration-700">
+          </div>
+          <div
+            class="w-16 h-16 bg-violet-500/10 rounded-2xl flex items-center justify-center mb-8 border border-violet-500/20 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+              </path>
+            </svg>
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Smart Staff Management</h4>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">Next-gen HR platform for
+            workforce optimization and automated performance scaling.</p>
+          <a href="#contact"
+            class="text-xs font-bold uppercase tracking-widest text-violet-400 flex items-center group-hover:text-white transition-colors">
+            Discover More <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Hotel Management -->
+        <div class="glass-card group p-10 rounded-[2rem] reveal reveal-stagger relative overflow-hidden">
+          <div
+            class="absolute -right-4 -top-4 w-24 h-24 bg-blue-500/5 rounded-full group-hover:bg-blue-500/20 transition-all duration-700">
+          </div>
+          <div
+            class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-8 border border-blue-500/20 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1">
+              </path>
+            </svg>
+          </div>
+          <h4 class="text-2xl font-bold mb-4"> Smart Hotel Management</h4>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">Unified hospitality operative
+            system for seamless guest experiences and booking.</p>
+          <a href="Hotel Management.pdf" target="_blank"
+            class="text-xs font-bold uppercase tracking-widest text-blue-400 flex items-center group-hover:text-white transition-colors">
+            Discover More <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Database Management -->
+        <div class="glass-card group p-10 rounded-[2rem] reveal reveal-stagger relative overflow-hidden">
+          <div
+            class="absolute -right-4 -top-4 w-24 h-24 bg-emerald-500/5 rounded-full group-hover:bg-emerald-500/20 transition-all duration-700">
+          </div>
+          <div
+            class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-8 border border-emerald-500/20 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 7v10c0 2 3.5 4 8 4s8-2 8-4V7M4 7c0 2 3.5 4 8 4s8-2 8-4M4 7c0-2 3.5-4 8-4s8 2 8 4m0 5c0 2-3.5 4-8 4s-8-2-8-4">
+              </path>
+            </svg>
+          </div>
+          <h4 class="text-2xl font-bold mb-4">Smart Database Management</h4>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">High-availability data fabric
+            for ultra-fast retrieval and distributed storage integrity.</p>
+          <a href="EMPLOYEE MANAGER SYSTEM.pdf" target="_blank"
+            class="text-xs font-bold uppercase tracking-widest text-emerald-400 flex items-center group-hover:text-white transition-colors">
+            Discover More <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INNOVATION SECTION -->
+  <section id="innovation" class="py-32 relative overflow-hidden bg-black" data-aos="fade-up">
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-purple-900/10 to-transparent"></div>
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center mb-24 reveal">
+        <h2 class="text-[var(--accent-violet)] font-bold uppercase tracking-[0.3em] text-[10px] mb-4 text-center">
+          The Innovation Protocol</h2>
+        <h3 class="text-4xl md:text-6xl font-black mb-8">Innovative Smart Living</h3>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-12">
+        <!-- AI Powered Smart E-Commerces -->
+        <div class="group relative reveal">
+          <div class="aspect-video glass-card rounded-[2.5rem] overflow-hidden relative ring-1 ring-white/5">
+            <img src="images/smart_ecommerce.png" alt="AI Powered Smart E-Commerces"
+              class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+            <div class="absolute bottom-8 left-8">
+              <h4 class="text-3xl font-black mb-2">Smart E-Commerces</h4>
+              <p class="text-white/60 text-sm font-medium">AI-driven platforms for personalized retail intelligence.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Smart Locking -->
+        <div class="group relative reveal delay-100">
+          <div class="aspect-video glass-card rounded-[2.5rem] overflow-hidden relative ring-1 ring-white/5">
+            <img src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=1470&auto=format&fit=crop"
+              class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-1000">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+            <div class="absolute bottom-8 left-8">
+              <h4 class="text-3xl font-black mb-2">Smart Locking</h4>
+              <p class="text-white/60 text-sm font-medium">AI-Driven Biometric & Encrypted Access Control Systems.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Smart Home -->
+        <div class="group relative reveal delay-200">
+          <div class="aspect-video glass-card rounded-[2.5rem] overflow-hidden relative ring-1 ring-white/5">
+            <img src="images/smart_home.png" alt="Smart Home Control Interior"
+              class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+            <div class="absolute bottom-8 left-8">
+              <h4 class="text-3xl font-black mb-2">Smart Home</h4>
+              <p class="text-white/60 text-sm font-medium">AI-Driven Unified IoT hubs for adaptive home automation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK SECTION -->
+  <section id="tech" class="py-32 bg-[var(--bg-dark)]" data-aos="fade-up">
+    <div class="container mx-auto px-6">
+      <h2 class="text-center text-4xl font-black mb-24 reveal">Our Technological Stack</h2>
+
+      <div class="grid lg:grid-cols-3 gap-12">
+        <!-- App Development -->
+        <div class="glass-card p-10 rounded-3xl reveal border-b-2 border-purple-500/50">
+          <h4
+            class="text-xl font-black mb-8 border-l-4 border-purple-500 pl-4 uppercase tracking-widest text-purple-400 text-xs">
+            App Development</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all" title="Flutter">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all" title="Kotlin">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all" title="Swift">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all" title="React Native">
+          </div>
+        </div>
+
+        <!-- IoT -->
+        <div class="glass-card p-10 rounded-3xl reveal delay-100 border-b-2 border-violet-500/50">
+          <h4
+            class="text-xl font-black mb-8 border-l-4 border-violet-500 pl-4 uppercase tracking-widest text-violet-400 text-xs">
+            Internet of Things</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all" title="Arduino">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all" title="C++">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all" title="Python">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all" title="Raspberry Pi">
+          </div>
+        </div>
+
+        <!-- Web Development -->
+        <div class="glass-card p-10 rounded-3xl reveal delay-200 border-b-2 border-accent-violet/50">
+          <h4
+            class="text-xl font-black mb-8 border-l-4 border-accent-violet pl-4 uppercase tracking-widest text-accent-violet text-xs">
+            Web Development</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-line.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all invert" title="Next.js">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all" title="Tailwind">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all" title="Node.js">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+              class="w-8 h-8 opacity-50 hover:opacity-100 hover:scale-110 transition-all" title="MongoDB">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREERS SECTION -->
+  <section id="careers" class="py-32 bg-[var(--surface-dark)]" data-aos="fade-up">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-end justify-between mb-20 reveal">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-black mb-4">Career Opportunities</h2>
+          <p class="text-[var(--text-secondary)] font-medium">Bridge the gap between vision and reality.
+            Accelerate your career with Vaisoverse.</p>
+        </div>
+        <button
+          class="hidden md:block px-8 py-3 glass-card rounded-full font-bold text-sm hover:border-white transition-all">View
+          All Roles</button>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-8">
+        <!-- Role: Software Engineer -->
+        <div class="glass-card p-10 rounded-[2.5rem] group reveal border-l-8 border-purple-500 relative">
+          
+          <!-- MAGIC TOGGLE (NO JAVASCRIPT NEEDED) -->
+          <input type="checkbox" id="toggle-apply-se" class="peer hidden">
+
+          <!-- Card Header & Apply Trigger -->
+          <div class="flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center space-x-8">
+              <div
+                class="w-20 h-20 rounded-full bg-purple-500/10 flex items-center justify-center border border-purple-500/20 text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition-all duration-500 flex-shrink-0">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-3xl font-black group-hover:text-purple-400 transition-colors mb-2">General Application</h4>
+                <p class="text-white/50 text-xs uppercase tracking-widest font-bold mb-4">All Departments • Open Application</p>
+                <p class="text-sm text-white/70 max-w-md leading-relaxed">Don't see a specific role that matches your skills? Submit your profile here. We are always looking for visionary talent to join our team.</p>
+              </div>
+            </div>
+            
+            <!-- Clicking this label triggers the hidden checkbox -->
+            <label for="toggle-apply-se".
+              class="mt-8 md:mt-0 px-10 py-4 bg-white text-black font-black rounded-xl hover:bg-[var(--accent-violet)] hover:text-white transition-all transform hover:scale-105 active:scale-95 inline-block text-center cursor-pointer select-none">
+              Apply
+            </label>
+          </div>
+
+          <!-- HIDDEN FORM -->
+          <!-- HIDDEN FORM (Revealed seamlessly by CSS when Checkbox is checked) -->
+          <div class="hidden peer-checked:block mt-8 pt-8 border-t border-white/10 form-reveal">
+            <h5 class="text-2xl font-black mb-6 text-purple-400">Application Gateway</h5>
+            
+            <form id="career-form" action="https://formsubmit.co/vaisoverse@gmail.com" method="POST" enctype="multipart/form-data" class="space-y-6">
+              <input type="hidden" name="_subject" value="New Job Application: Software Engineer">
+              <input type="hidden" name="_captcha" value="false">
+
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                  <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Full Identity</label>
+                  <input type="text" name="Applicant Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium" placeholder="Ex: Sarah Connor">
+                </div>
+                <div class="space-y-2">
+                  <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Secure Mail</label>
+                  <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium" placeholder="sarah@network.com">
+                </div>
+              </div>
+              
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                  <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Phone Protocol</label>
+                  <input type="tel" name="Phone Number" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium" placeholder="+91 XXX-XXX-XXXX">
+                </div>
+                <div class="space-y-2">
+                  <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">LinkedIn Profile</label>
+                  <input type="text" name="LinkedIn URL" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium" placeholder="linkedin.com/in/yourprofile">
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Portfolio Link (Optional)</label>
+                <input type="text" name="Portfolio" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium" placeholder="github.com/yourwork">
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Resume / Data Package (PDF)</label>
+                <input type="file" name="Resume" accept=".pdf,.doc,.docx" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium text-white/50 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-purple-500/20 file:text-purple-400 hover:file:bg-purple-500/30 file:transition-all cursor-pointer">
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Cover Logic</label>
+                <textarea name="Cover Letter" rows="3" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium resize-none" placeholder="Elaborate on why you are a perfect fit for this architecture..."></textarea>
+              </div>
+
+              <div class="flex flex-col md:flex-row justify-end items-center gap-4 pt-4">
+                <label for="toggle-apply-se" class="w-full md:w-auto px-8 py-3 bg-white/5 text-white/70 font-bold rounded-xl hover:bg-white/10 transition-all cursor-pointer text-center select-none">Cancel</label>
+                <button type="submit" class="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-purple-500 to-violet-500 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all transform hover:scale-105 active:scale-95">Transmit Application</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" class="py-32" data-aos="fade-up">
+    <div class="container mx-auto px-6 max-w-3xl">
+      <h2 class="text-4xl font-black text-center mb-24 reveal">Frequently Asked Questions</h2>
+      <div class="space-y-6">
+        <!-- FAQ 1 -->
+        <div class="glass-card rounded-3xl overflow-hidden reveal">
+          <button
+            class="w-full p-8 text-left flex justify-between items-center group faq-toggle hover:bg-white/5 transition-colors">
+            <span class="font-bold text-lg">How does Vaisoverse drive AI innovation?</span>
+            <svg class="w-6 h-6 transition-transform duration-500 text-purple-500" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+              </path>
+            </svg>
+          </button>
+          <div class="px-8 pb-8 text-white/50 leading-relaxed text-sm hidden font-medium">
+            We operate a dedicated R&D lab that prototypes advanced neural architectures and cognitive computing models,
+            integrating them directly into enterprise workflows for real-world impact.
+          </div>
+        </div>
+        <!-- FAQ 2 -->
+        <div class="glass-card rounded-3xl overflow-hidden reveal delay-100">
+          <button
+            class="w-full p-8 text-left flex justify-between items-center group faq-toggle hover:bg-white/5 transition-colors">
+            <span class="font-bold text-lg">What is your methodology for Research & Development?</span>
+            <svg class="w-6 h-6 transition-transform duration-500 text-purple-500" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+              </path>
+            </svg>
+          </button>
+          <div class="px-8 pb-8 text-white/50 leading-relaxed text-sm hidden font-medium">
+            Our R&D pipeline follows a "Prototype-to-Product" cycle, where we explore moonshot technologies
+            like quantum-resistant encryption and decentralized IoT management before refining them for commercial use.
+          </div>
+        </div>
+        <!-- FAQ 3 -->
+        <div class="glass-card rounded-3xl overflow-hidden reveal delay-200">
+          <button
+            class="w-full p-8 text-left flex justify-between items-center group faq-toggle hover:bg-white/5 transition-colors">
+            <span class="font-bold text-lg">Can we collaborate on custom innovation projects?</span>
+            <svg class="w-6 h-6 transition-transform duration-500 text-purple-500" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+              </path>
+            </svg>
+          </button>
+          <div class="px-8 pb-8 text-white/50 leading-relaxed text-sm hidden font-medium">
+            Absolutely. We frequently partner with industry leaders to co-develop proprietary solutions,
+            leveraging our cross-disciplinary expertise in software architecture and hardware integration.
+          </div>
+        </div>
+        <!-- FAQ 4 -->
+        <div class="glass-card rounded-3xl overflow-hidden reveal delay-300">
+          <button
+            class="w-full p-8 text-left flex justify-between items-center group faq-toggle hover:bg-white/5 transition-colors">
+            <span class="font-bold text-lg">What kind of R&D does Vaisoverse conduct?</span>
+            <svg class="w-6 h-6 transition-transform duration-500 text-purple-500" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+              </path>
+            </svg>
+          </button>
+          <div class="px-8 pb-8 text-white/50 leading-relaxed text-sm hidden font-medium">
+            Our Innovation Lab focuses on cognitive home automation, biometric decentralized authentication,
+            and quantum-resistant data meshes. We believe in engineering solutions for the next decade.
+          </div>
+        </div>
+        <!-- FAQ 5 -->
+        <div class="glass-card rounded-3xl overflow-hidden reveal delay-[400ms]">
+          <button
+            class="w-full p-8 text-left flex justify-between items-center group faq-toggle hover:bg-white/5 transition-colors">
+            <span class="font-bold text-lg">How does Vaisoverse sustain its commitment to continuous Innovation and
+              R&D?</span>
+            <svg class="w-6 h-6 transition-transform duration-500 text-purple-500" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+              </path>
+            </svg>
+          </button>
+          <div class="px-8 pb-8 text-white/50 leading-relaxed text-sm hidden font-medium">
+            We reinvest a significant portion of our revenue into our specialized Innovation Lab, fostering a culture
+            where
+            our architects are empowered to prototype moonshot technologies that define the next decade of intelligent
+            systems.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RE-DESIGNED CONTACT SECTION WITH ADDRESS & MAP -->
+  <section id="contact" class="py-32 relative overflow-hidden" data-aos="zoom-in">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="glass-card p-8 md:p-12 lg:p-16 rounded-[3.5rem] reveal ring-1 ring-white/5">
+          <div class="grid lg:grid-cols-5 gap-12 lg:gap-16">
+            
+            <!-- Left Side: Contact Form -->
+            <div class="lg:col-span-3">
+              <h2 class="text-4xl md:text-5xl font-black mb-10">Get in Touch.</h2>
+              <form id="interface-form" class="space-y-8">
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Identity</label>
+                    <input type="text" required
+                      class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium"
+                      placeholder="Ex: Alex Carter">
+                  </div>
+                  <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Secure Mail</label>
+                    <input type="email" required
+                      class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium"
+                      placeholder="alex@intel.com">
+                  </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Phone Protocol</label>
+                    <input type="tel"
+                      class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium"
+                      placeholder="+91 XXX-XXX-XXXX">
+                  </div>
+                  <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Service Stream</label>
+                    <select
+                      class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium appearance-none">
+                      <option class="bg-black">Smart Retail Management Solutions</option>
+                      <option class="bg-black">Smart Staff & HR Management Systems</option>
+                      <option class="bg-black">Smart Hospitality (Hotel) Management</option>
+                      <option class="bg-black">Smart Intelligent Database Systems</option>
+                      <option class="bg-black">Smart Home & IoT Automation</option>
+                      <option class="bg-black">Smart Advanced Security (Smart Locking)</option>
+                      <option class="bg-black">Custom Software Product</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <label class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Message Hub</label>
+                  <textarea rows="4" required
+                    class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-purple-500 transition-all text-sm font-medium resize-none"
+                    placeholder="Elaborate on your technological objectives..."></textarea>
+                </div>
+                <button type="submit"
+                  class="w-full py-5 bg-white text-black font-black rounded-2xl hover:bg-gradient-to-r hover:from-purple-500 hover:to-violet-500 hover:text-white transition-all text-lg btn-ripple">
+                  Initiate Secure Connection
+                </button>
+              </form>
+            </div>
+
+            <!-- Right Side: Headquarters Info & Map -->
+            <div class="lg:col-span-2 flex flex-col justify-center space-y-10">
+              
+              <!-- Address Details -->
+              <div>
+                <h3 class="text-2xl font-black mb-6 text-white border-l-4 border-[var(--accent-violet)] pl-3">Headquarters</h3>
+                
+                <div class="space-y-6 text-sm text-[var(--text-secondary)] font-medium">
+                  <!-- Address -->
+                  <div class="flex items-start space-x-4 group cursor-default">
+                    <div class="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center shrink-0 text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <div class="pt-1 leading-relaxed">
+                      <p class="font-bold text-white mb-1">Vaisoverse Innovation</p>
+                      <p>No.350/1D, Poluvampatty Road,</p>
+                      <p>Thondamuthur, Coimbatore South,</p>
+                      <p>Coimbatore - 641109</p>
+                    </div>
+                  </div>
+
+                  <!-- Phone -->
+                  <a href="tel:+919566985698" class="flex items-center space-x-4 group">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <span class="group-hover:text-white transition-colors">+91 9566985698</span>
+                  </a>
+
+                  <!-- Email -->
+                  <a href="mailto:vaisoverse@gmail.com" class="flex items-center space-x-4 group">
+                    <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <span class="group-hover:text-white transition-colors">vaisoverse@gmail.com</span>
+                  </a>
+                  
+                  <!-- Website -->
+                  <a href="https://www.vaisoverse.in" target="_blank" class="flex items-center space-x-4 group">
+                    <div class="w-10 h-10 rounded-full bg-rose-500/10 flex items-center justify-center shrink-0 text-rose-400 group-hover:bg-rose-500 group-hover:text-white transition-colors">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                    </div>
+                    <span class="group-hover:text-white transition-colors">www.vaisoverse.in</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Google Map View -->
+              <div class="w-full h-72 lg:h-96 rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(184,90,217,0.1)] relative group">
+                <iframe 
+                  src="https://maps.google.com/maps?q=No.350/1D,%20Poluvampatty%20Road,%20Thondamuthur,%20Coimbatore%20South,%20Coimbatore-%20641109&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                  class="absolute inset-0 w-full h-full dark-map border-0" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <!-- Subtle tint that disappears on hover -->
+                <div class="absolute inset-0 pointer-events-none bg-purple-900/10 group-hover:bg-transparent transition-colors duration-500"></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="pt-20 pb-10 bg-black border-t border-white/5 relative overflow-hidden">
+    <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-purple-500/5 rounded-full blur-[80px]"></div>
+    <div class="container mx-auto px-4 md:px-6 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-10">
+        <!-- Brand Info -->
+        <div class="lg:col-span-2 space-y-8">
+          <a href="#home" class="flex items-center space-x-4">
+            <img src="VAISOVERSE INNOVATION LOGO.png" alt="Logo" class="h-12 w-auto">
+            <div class="flex flex-col">
+              <span class="text-2xl font-black tracking-tight text-white">Vaisoverse Technolog</span><br>
+              <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30 italic">Innovating
+                Intelligent Digital Solutions</span>
+            </div>
+          </a>
+
+          <!-- Footer Search Bar -->
+          <div class="relative group max-w-sm">
+            <input type="text" placeholder="Search Vaisoverse..."
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-10 py-3 focus:outline-none focus:border-purple-500 transition-all text-xs font-medium backdrop-blur-md">
+            <svg
+              class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30 group-focus-within:text-purple-500 transition-colors"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+
+          <div class="flex space-x-4">
+            <a href="https://www.instagram.com/vaisovers/?next=%2F" target="_blank"
+              class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:bg-gradient-to-tr hover:from-purple-600 hover:to-pink-500 transition-all text-white/40 hover:text-white">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/share/15SFr2X8E4/" target="_blank"
+              class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:bg-blue-600 transition-all text-white/40 hover:text-white">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@Vaisoverse" target="_blank"
+              class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:bg-red-600 transition-all text-white/40 hover:text-white">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+              </svg>
+            </a>
+            <a href="https://in.linkedin.com/in/vaiso-verse-technology-4877b3367" target="_blank"
+              class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:bg-[#0077b5] transition-all text-white/40 hover:text-white">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation Columns -->
+        <div class="pt-2">
+          <ul class="space-y-4">
+            <li><a href="#home" class="text-sm text-white/40 hover:text-white transition-colors">Home</a>
+            </li>
+            <li><a href="#about" class="text-sm text-white/40 hover:text-white transition-colors">About</a>
+            </li>
+            <li><a href="#products" class="text-sm text-white/40 hover:text-white transition-colors">Products</a></li>
+          </ul>
+        </div>
+        <div class="pt-2">
+          <ul class="space-y-4">
+            <li><a href="#innovation" class="text-sm text-white/40 hover:text-white transition-colors">Innovation</a>
+            </li>
+            <li><a href="#tech" class="text-sm text-white/40 hover:text-white transition-colors">Tech
+                Stack</a></li>
+            <li><a href="#careers" class="text-sm text-white/40 hover:text-white transition-colors">Careers</a></li>
+          </ul>
+        </div>
+        <div class="pt-2">
+          <ul class="space-y-4">
+            <li><a href="team.html" class="text-sm text-white/40 hover:text-white transition-colors">Team</a></li>
+            <li><a href="#faq" class="text-sm text-white/40 hover:text-white transition-colors">FAQ</a></li>
+            <li><a href="#contact" class="text-[var(--accent-violet)] text-sm font-bold hover:underline">Connect Now</a>
+            </li>
+            
+            <!-- NEW ADMIN BUTTON FOR FOOTER -->
+            <li><a href="https://hrsite-manager-uxe5.vercel.app/" target="_blank" class="text-white text-sm font-bold hover:underline flex items-center gap-2">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              Admin Portal
+            </a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-white/5 flex flex-col md:flex-row justify-end items-center">
+        <p class="text-[10px] uppercase tracking-[0.4em] text-white/30 font-black text-center md:text-right">©
+          All Rights Reserved. Vaisoverse Innovation Pvt Ltd.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Intersection Observer for Reveal Logic
+    const revealCallback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          if (entry.target.classList.contains('counter')) startCounter(entry.target);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(revealCallback, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal, .counter').forEach(el => observer.observe(el));
+
+    // Numeric Counters
+    function startCounter(el) {
+      if (el.dataset.running) return;
+      el.dataset.running = "true";
+      const target = parseInt(el.dataset.target);
+      let count = 0;
+      const speed = 2000; // 2 seconds total
+      const step = target / (speed / 16);
+      const update = () => {
+        count += step;
+        if (count < target) {
+          el.innerText = Math.floor(count);
+          requestAnimationFrame(update);
+        } else {
+          el.innerText = target + "+";
+        }
+      };
+      update();
+    }
+
+    // Modal Handlers
+    function openModal() { document.getElementById('modal-overlay').classList.add('active'); }
+    function closeModal() { document.getElementById('modal-overlay').classList.remove('active'); }
+    function simulateApply() { openModal(); }
+
+    // Form Handling
+    document.getElementById('interface-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      openModal();
+      e.target.reset();
+    });
+
+    // Header Transparency on Scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('main-header');
+      const backToTop = document.getElementById('back-to-top');
+
+      if (window.scrollY > 50) {
+        header.classList.add('py-2');
+        header.classList.remove('py-4');
+      } else {
+        header.classList.add('py-4');
+        header.classList.remove('py-2');
+      }
+
+      if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // FAQ Toggle
+    document.querySelectorAll('.faq-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('svg');
+        const isOpen = !content.classList.contains('hidden');
+
+        // Close others (Optional)
+        // document.querySelectorAll('.faq-toggle + div').forEach(c => c.classList.add('hidden'));
+
+        content.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+      });
+    });
+
+    // Mobile Menu
+    const menuBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('flex');
+      const spans = menuBtn.querySelectorAll('span');
+      spans[0].classList.toggle('rotate-45'); spans[0].classList.toggle('translate-y-2');
+      spans[1].classList.toggle('opacity-0');
+      spans[2].classList.toggle('-rotate-45'); spans[2].classList.toggle('-translate-y-2');
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+      });
+    });
+
+    // Hero Particles
+    const canvas = document.getElementById('hero-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+      window.addEventListener('resize', resize);
+      resize();
+
+      class Particle {
+        constructor() {
+          this.init();
+        }
+        init() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 2 + 0.5;
+          this.sx = Math.random() * 0.4 - 0.2;
+          this.sy = Math.random() * 0.4 - 0.2;
+          this.o = Math.random() * 0.4;
+        }
+        draw() {
+          ctx.fillStyle = `rgba(184, 90, 217, ${this.o})`;
+          ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+        }
+        update() {
+          this.x += this.sx; this.y += this.sy;
+          if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.init();
+        }
+      }
+      for (let i = 0; i < 120; i++) particles.push(new Particle());
+      const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+      };
+      animate();
+    }
+
+  </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-cubic'
+    });
+  </script>
+</body>
+
+</html>
